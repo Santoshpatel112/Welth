@@ -3,9 +3,7 @@ import Image from "next/image";
 export default function Home() {
   return (
     <>
-    
-    <p>dfvfbvjbhvbwfbhbvjbbwrf
-    </p>
+    <h1>Home Page</h1>
     </>
   );
 }
