@@ -3,7 +3,7 @@ import { SignInButton, SignedIn, SignedOut } from "@clerk/nextjs";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, TrendingUp, Shield, Zap } from "lucide-react";
-import { statsData, featuresData, howItWorksData } from "../data/landing";
+import { statsData, featuresData, howItWorksData, testimonialsData } from "../data/landing";
 
 export default function Home() {
   return (
@@ -285,6 +285,104 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Testimonials Section */}
+      <section className="py-24 md:py-32 bg-white relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+          <div className="text-center mb-20 animate-fade-in">
+            <div className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-blue-100 to-purple-100 rounded-full text-sm font-semibold text-blue-700 shadow-sm mb-6">
+              <Shield className="w-4 h-4" />
+              <span>Trusted by Thousands</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
+              What Our Users Say
+            </h2>
+            <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto">
+              Join thousands of satisfied users who transformed their financial journey with Welth
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8 lg:gap-10">
+            {testimonialsData.map((testimonial, index) => (
+              <div 
+                key={index}
+                className="group relative bg-gradient-to-br from-white to-gray-50 rounded-3xl p-8 lg:p-10 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border-2 border-gray-100 animate-fade-in"
+                style={{animationDelay: `${index * 0.15}s`}}
+              >
+                {/* Quote icon */}
+                <div className="absolute top-6 right-6 opacity-10 group-hover:opacity-20 transition-opacity">
+                  <svg className="w-16 h-16 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                  </svg>
+                </div>
+
+                {/* User info */}
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="relative">
+                    <div className="w-16 h-16 rounded-full overflow-hidden ring-4 ring-blue-100 group-hover:ring-blue-200 transition-all">
+                      <Image
+                        src={testimonial.image}
+                        alt={testimonial.name}
+                        width={64}
+                        height={64}
+                        className="object-cover w-full h-full"
+                      />
+                    </div>
+                    <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center">
+                      <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-lg text-gray-900">{testimonial.name}</h4>
+                    <p className="text-sm text-gray-600">{testimonial.role}</p>
+                  </div>
+                </div>
+
+                {/* Rating stars */}
+                <div className="flex gap-1 mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <svg key={i} className="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                      <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                    </svg>
+                  ))}
+                </div>
+
+                {/* Quote */}
+                <p className="text-gray-700 text-lg leading-relaxed italic">
+                  "{testimonial.quote}"
+                </p>
+
+                {/* Decorative gradient */}
+                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-b-3xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              </div>
+            ))}
+          </div>
+
+          {/* Trust badges */}
+          <div className="mt-20 pt-16 border-t border-gray-200">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-items-center opacity-60">
+              <div className="text-center">
+                <div className="text-3xl font-bold text-gray-800 mb-1">4.9/5</div>
+                <div className="text-sm text-gray-600">App Store Rating</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-gray-800 mb-1">50K+</div>
+                <div className="text-sm text-gray-600">Happy Users</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-gray-800 mb-1">99.9%</div>
+                <div className="text-sm text-gray-600">Uptime</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-gray-800 mb-1">24/7</div>
+                <div className="text-sm text-gray-600">Support</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="relative py-24 md:py-32 bg-gradient-to-br from-blue-600 via-purple-600 to-blue-700 overflow-hidden">
         {/* Animated background */}
@@ -313,7 +411,7 @@ export default function Home() {
             <SignedIn>
               <Link href="/dashboard">
                 <Button size="lg" variant="secondary" className="group text-lg px-10 py-7 shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-110">
-                  Go to Dashboard
+                  Start Free trails
                   <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-2" />
                 </Button>
               </Link>
