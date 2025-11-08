@@ -3,7 +3,7 @@ import { SignInButton, SignedIn, SignedOut } from "@clerk/nextjs";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, TrendingUp, Shield, Zap } from "lucide-react";
-import { statsData, featuresData } from "../data/landing";
+import { statsData, featuresData, howItWorksData } from "../data/landing";
 
 export default function Home() {
   return (
@@ -144,6 +144,10 @@ export default function Home() {
         </div>
       </section>
 
+<section>
+  
+</section>
+
       {/* Features Section */}
       <section className="py-24 md:py-32 bg-white relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
@@ -186,6 +190,97 @@ export default function Home() {
                 </div>
               );
             })}
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works Section */}
+      <section className="py-24 md:py-32 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 relative overflow-hidden">
+        {/* Background decoration */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-1/4 left-0 w-96 h-96 bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+          <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+        </div>
+
+        <div className="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+          <div className="text-center mb-20 animate-fade-in">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 bg-clip-text text-transparent">
+              How It Works
+            </h2>
+            <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto">
+              Get started with Welth in three simple steps
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8 lg:gap-12 relative">
+            {/* Connection lines for desktop */}
+            <div className="hidden md:block absolute top-24 left-0 right-0 h-1">
+              <div className="absolute left-1/6 right-1/6 h-full">
+                <div className="w-full h-full bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 rounded-full opacity-30"></div>
+              </div>
+            </div>
+
+            {howItWorksData.map((step, index) => (
+              <div 
+                key={index}
+                className="relative animate-fade-in"
+                style={{animationDelay: `${index * 0.2}s`}}
+              >
+                {/* Step card */}
+                <div className="relative bg-white rounded-3xl p-8 lg:p-10 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border-2 border-gray-100 group">
+                  {/* Step number badge */}
+                  <div className="absolute -top-6 left-1/2 transform -translate-x-1/2">
+                    <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                      <span className="text-white font-bold text-xl">{index + 1}</span>
+                    </div>
+                  </div>
+
+                  {/* Icon */}
+                  <div className="flex justify-center mb-6 mt-4">
+                    <div className="w-20 h-20 bg-gradient-to-br from-blue-100 to-purple-100 rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
+                      <div className="text-blue-600">
+                        {step.icon}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Content */}
+                  <h3 className="text-2xl font-bold mb-4 text-gray-900 text-center">
+                    {step.title}
+                  </h3>
+                  <p className="text-gray-600 text-lg leading-relaxed text-center">
+                    {step.description}
+                  </p>
+                </div>
+
+                {/* Arrow for mobile */}
+                {index < howItWorksData.length - 1 && (
+                  <div className="md:hidden flex justify-center my-6">
+                    <ArrowRight className="w-8 h-8 text-purple-400 rotate-90" />
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+
+          {/* CTA Button */}
+          <div className="text-center mt-16 animate-fade-in" style={{animationDelay: '0.6s'}}>
+            <SignedOut>
+              <SignInButton>
+                <Button size="lg" className="group text-lg px-10 py-6 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105">
+                  Start Your Journey
+                  <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-2" />
+                </Button>
+              </SignInButton>
+            </SignedOut>
+            <SignedIn>
+              <Link href="/dashboard">
+                <Button size="lg" className="group text-lg px-10 py-6 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105">
+                  Go to Dashboard
+                  <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-2" />
+                </Button>
+              </Link>
+            </SignedIn>
           </div>
         </div>
       </section>
