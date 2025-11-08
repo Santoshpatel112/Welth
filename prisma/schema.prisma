@@ -14,3 +14,10 @@ datasource db {
   url      = env("DATABASE_URL")
   directurl=env("DIRECT_URL")
 }
+
+model User{
+  id    String    @id @default()
+}
+model Account{}
+model Transction{}
+model Budget{}
