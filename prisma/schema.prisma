@@ -87,7 +87,7 @@ enum TransactionType {
   INCOME
   EXPENSE
 }
-
+// account type 
 enum AccountType {
   CURRENT
   SAVINGS
